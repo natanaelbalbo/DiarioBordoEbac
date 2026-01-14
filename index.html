@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diário de Bordo - Registre suas atividades diárias">
+    <meta name="theme-color" content="#2196F3">
+    <title>Diário de Bordo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📔 Diário de Bordo</h1>
+            <p class="subtitle">Registre suas atividades diárias</p>
+        </header>
+
+        <!-- Botão de instalação PWA -->
+        <button id="installBtn" class="install-btn" style="display: none;">
+            📥 Instalar Aplicativo
+        </button>
+
+        <!-- Formulário para adicionar entradas -->
+        <section class="form-section">
+            <h2>Nova Entrada</h2>
+            <form id="entryForm">
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" required placeholder="Digite o título">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Data:</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" required placeholder="Descreva sua atividade..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Adicionar Entrada</button>
+            </form>
+        </section>
+
+        <!-- Lista de entradas -->
+        <section class="entries-section">
+            <h2>Minhas Entradas</h2>
+            <div id="entriesList" class="entries-list">
+                <p class="no-entries">Nenhuma entrada registrada ainda.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
