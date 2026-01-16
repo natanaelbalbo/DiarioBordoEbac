@@ -1,8 +1,5 @@
-// Estado da aplicação
 let entries = [];
 let deferredPrompt;
-
-// Elementos DOM
 const entryForm = document.getElementById("entryForm");
 const titleInput = document.getElementById("title");
 const dateInput = document.getElementById("date");
@@ -18,55 +15,35 @@ document.addEventListener("DOMContentLoaded", () => {
   registerServiceWorker();
 });
 
-// Registrar Service Worker
 function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("service-worker.js")
-      .then((registration) => {
-        console.log("Service Worker registrado com sucesso:", registration);
-      })
       .catch((error) => {
         console.error("Erro ao registrar Service Worker:", error);
       });
   }
 }
 
-// Evento beforeinstallprompt para instalação PWA
 window.addEventListener("beforeinstallprompt", (e) => {
-  // Previne o prompt automático
   e.preventDefault();
-  // Armazena o evento para usar depois
   deferredPrompt = e;
-  // Mostra o botão de instalação
   installBtn.style.display = "block";
 });
 
-// Evento de clique no botão de instalação
 installBtn.addEventListener("click", async () => {
   if (!deferredPrompt) {
     return;
   }
-  // Mostra o prompt de instalação
   deferredPrompt.prompt();
-  // Espera pela escolha do usuário
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log(
-    `Usuário ${outcome === "accepted" ? "aceitou" : "recusou"} a instalação`
-  );
-  // Limpa o prompt
+  await deferredPrompt.userChoice;
   deferredPrompt = null;
-  // Esconde o botão
   installBtn.style.display = "none";
 });
 
-// Evento após a instalação
 window.addEventListener("appinstalled", () => {
-  console.log("PWA foi instalado com sucesso!");
   installBtn.style.display = "none";
 });
-
-// Define a data de hoje como padrão
 function setTodayDate() {
   const today = new Date().toISOString().split("T")[0];
   dateInput.value = today;
@@ -140,7 +117,7 @@ function displayEntries() {
                 <button class="btn btn-danger" onclick="deleteEntry(${
                   entry.id
                 })">
-                    🗑️ Remover
+                    Remover
                 </button>
             </div>
         </div>
@@ -149,7 +126,6 @@ function displayEntries() {
     .join("");
 }
 
-// Remover entrada
 function deleteEntry(id) {
   if (confirm("Tem certeza que deseja remover esta entrada?")) {
     entries = entries.filter((entry) => entry.id !== id);
@@ -159,7 +135,6 @@ function deleteEntry(id) {
   }
 }
 
-// Formatar data
 function formatDate(dateString) {
   const date = new Date(dateString + "T00:00:00");
   return date.toLocaleDateString("pt-BR", {
@@ -169,7 +144,6 @@ function formatDate(dateString) {
   });
 }
 
-// Escapar HTML para prevenir XSS
 function escapeHtml(text) {
   const map = {
     "&": "&amp;",
@@ -181,9 +155,7 @@ function escapeHtml(text) {
   return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
-// Notificação simples
 function showNotification(message) {
-  // Cria elemento de notificação
   const notification = document.createElement("div");
   notification.textContent = message;
   notification.style.cssText = `
@@ -217,7 +189,6 @@ function showNotification(message) {
 
   document.body.appendChild(notification);
 
-  // Remove após 3 segundos
   setTimeout(() => {
     notification.style.animation = "slideIn 0.3s ease-out reverse";
     setTimeout(() => notification.remove(), 300);

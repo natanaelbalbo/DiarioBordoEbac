@@ -9,23 +9,16 @@ const urlsToCache = [
   "/icons/icon-512x512.png",
 ];
 
-// Instalação do Service Worker
 self.addEventListener("install", (event) => {
-  console.log("Service Worker: Instalando...");
   event.waitUntil(
     caches
       .open(CACHE_NAME)
-      .then((cache) => {
-        console.log("Service Worker: Cache aberto");
-        return cache.addAll(urlsToCache);
-      })
+      .then((cache) => cache.addAll(urlsToCache))
       .then(() => self.skipWaiting())
   );
 });
 
-// Ativação do Service Worker
 self.addEventListener("activate", (event) => {
-  console.log("Service Worker: Ativando...");
   event.waitUntil(
     caches
       .keys()
@@ -33,7 +26,6 @@ self.addEventListener("activate", (event) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME) {
-              console.log("Service Worker: Removendo cache antigo:", cacheName);
               return caches.delete(cacheName);
             }
           })
@@ -43,18 +35,12 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Interceptar requisições (estratégia Cache First)
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Retorna do cache se encontrado
       if (response) {
-        console.log("Service Worker: Retornando do cache:", event.request.url);
         return response;
       }
-
-      // Caso contrário, busca na rede
-      console.log("Service Worker: Buscando na rede:", event.request.url);
       return fetch(event.request)
         .then((response) => {
           // Verifica se a resposta é válida
@@ -94,7 +80,6 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// Mensagens do Service Worker
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
