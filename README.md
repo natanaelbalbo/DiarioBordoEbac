@@ -1,225 +1,135 @@
-# 📔 Diário de Bordo - PWA
+# 📔 Diário de Bordo
 
-> **Atividade Prática - EBAC**
-> Desenvolvimento de Aplicativo Web Progressivo (PWA)
+Aplicativo Web Progressivo (PWA) para registro de atividades diárias desenvolvido como parte do curso de Engenheiro Front-end da EBAC. Uma aplicação moderna que demonstra a implementação completa das tecnologias PWA, incluindo instalabilidade, funcionamento offline e persistência de dados.
 
-![PWA](https://img.shields.io/badge/PWA-Progressive%20Web%20App-blue)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+## 🎯 Sobre o Projeto
 
-## 📋 Sobre o Projeto
+Este PWA foi criado para resolver o desafio de desenvolver uma aplicação de registro de atividades que funcione perfeitamente mesmo sem conexão com a internet. O projeto foca em oferecer uma experiência nativa, podendo ser instalado no dispositivo do usuário e mantendo total funcionalidade offline.
 
-**Diário de Bordo** é um Aplicativo Web Progressivo (PWA) desenvolvido como atividade prática do curso EBAC. A aplicação permite registrar atividades diárias de forma simples e eficiente, funcionando offline, podendo ser instalada na tela inicial do dispositivo e mantendo todos os dados salvos localmente.
+### Problema Resolvido
 
-### 🎯 Objetivo da Atividade
+Aplicações web tradicionais dependem de conexão constante com a internet e não podem ser instaladas como apps nativos. Este projeto aborda essas limitações usando:
 
-Desenvolver um PWA completo que atenda aos seguintes requisitos:
-- ✅ Registro de atividades com título, descrição e data
-- ✅ Listagem e remoção de entradas
-- ✅ Transformação em PWA com manifest.json
-- ✅ Service Worker funcional para modo offline
-- ✅ Implementação do evento beforeinstallprompt
-- ✅ Persistência de dados com localStorage
-- ✅ Interface responsiva
+- **Service Worker**: Cache inteligente de recursos para funcionamento 100% offline
+- **Manifest.json**: Permite instalação na tela inicial como aplicativo nativo
+- **LocalStorage**: Persistência de dados local, garantindo que nenhuma entrada seja perdida
+- **Instalabilidade**: Evento beforeinstallprompt implementado para controle total da experiência de instalação
 
-## ✨ Funcionalidades
+## 📚 O Que Aprendi
 
-- ✅ **Criar entradas** com título, descrição e data
-- 📋 **Listar** todas as entradas registradas
-- 🗑️ **Remover** entradas indesejadas
-- 💾 **Persistência de dados** com localStorage
-- 📱 **Instalável** na tela inicial (PWA)
-- 🌐 **Funciona offline** através de Service Worker
-- 📱 **Responsivo** - funciona em mobile e desktop
+Durante o desenvolvimento deste projeto, aprofundei conhecimentos em:
+
+- **Service Workers**: Ciclo de vida, estratégias de cache e interceptação de requisições
+- **PWA APIs**: Implementação completa de manifest.json e configurações necessárias
+- **Cache API**: Gerenciamento de cache para assets estáticos e estratégia Cache First
+- **LocalStorage**: Manipulação de dados persistentes no navegador
+- **BeforeInstallPrompt**: Controle da experiência de instalação do PWA
+- **Offline First**: Desenvolvimento de aplicações que funcionam independente da conexão
+- **Responsive Design**: Interface adaptável para diferentes tamanhos de tela
+- **Event Handling**: Gerenciamento de eventos de instalação e atualização do Service Worker
+
 
 ## 🚀 Tecnologias Utilizadas
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- Service Worker API
-- LocalStorage API
-- PWA (Progressive Web App)
+- **HTML5** - Estrutura semântica da aplicação
+- **CSS3** - Estilização e responsividade
+- **JavaScript (Vanilla)** - Lógica da aplicação
+- **Service Worker API** - Funcionalidade offline
+- **LocalStorage API** - Persistência de dados
+- **PWA (Progressive Web App)** - Instalabilidade e experiência nativa
 
-## 📦 Estrutura do Projeto
+## ⚙️ Instalação e Uso
 
-```
-DiarioBordoEbac/
-│
-├── index.html              # Estrutura HTML da aplicação
-├── style.css               # Estilos e responsividade
-├── script.js               # Lógica da aplicação
-├── manifest.json           # Configuração PWA
-├── service-worker.js       # Service Worker para offline
-├── README.md               # Documentação do projeto
-│
-└── icons/                  # Pasta de ícones
-    ├── icon-192x192.png    # Ícone 192x192px
-    ├── icon-512x512.png    # Ícone 512x512px
-    └── README.md           # Instruções para ícones
-```
+### Pré-requisitos
 
-## 🎯 Como Usar
+- Navegador moderno (Chrome, Edge, Firefox ou Safari)
+- Servidor HTTP local
 
-### 1. Clonar o Repositório
+### Instalação
+
 ```bash
+# Clone o repositório
 git clone https://github.com/seu-usuario/DiarioBordoEbac.git
+
+# Entre na pasta do projeto
 cd DiarioBordoEbac
 ```
 
-### 2. Servir a Aplicação
-A aplicação precisa ser servida através de um servidor HTTP (não funciona abrindo diretamente o arquivo HTML).
+### Executar em Desenvolvimento
 
-**Opções:**
-
-#### Opção A: Usando Python
+**Opção 1 - Python:**
 ```bash
-# Python 3
 python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
 ```
 
-#### Opção B: Usando Node.js (http-server)
+**Opção 2 - Node.js:**
 ```bash
 npx http-server -p 8000
 ```
 
-#### Opção C: Usando VS Code Live Server
-- Instale a extensão "Live Server" no VS Code
+**Opção 3 - VS Code Live Server:**
+- Instale a extensão "Live Server"
 - Clique com botão direito no `index.html`
 - Selecione "Open with Live Server"
 
-### 3. Acessar a Aplicação
-Abra seu navegador e acesse:
+Acesse `http://localhost:8000` no navegador.
+
+## 📁 Estrutura do Projeto
+
 ```
-http://localhost:8000
+DiarioBordoEbac/
+├── index.html              # Estrutura HTML da aplicação
+├── style.css               # Estilos e responsividade
+├── script.js               # Lógica da aplicação e PWA
+├── manifest.json           # Configuração PWA
+├── service-worker.js       # Service Worker para offline
+└── icons/                  # Ícones do aplicativo
+    ├── icon-192x192.png
+    └── icon-512x512.png
 ```
 
-## ✅ Requisitos da Atividade Atendidos
+## 📱 Como Instalar o PWA
 
-### Funcionalidades da Aplicação
-- ✅ **Criar entradas** com título, descrição e data
-- ✅ **Listar** todas as entradas registradas
-- ✅ **Remover** entradas com confirmação
-
-### Transformação em PWA
-- ✅ **manifest.json** configurado com:
-  - `name`: "Diário de Bordo"
-  - `short_name`: "DiárioBordo"
-  - `start_url`: "/"
-  - `display`: "standalone"
-  - `theme_color`: "#2196F3"
-  - `background_color`: "#ffffff"
-- ✅ **Ícones** nas resoluções 192x192 e 512x512
-- ✅ **Service Worker** registrado e funcional
-- ✅ **Funcionalidade offline** mantendo entradas salvas
-- ✅ **beforeinstallprompt** implementado para instalação
-
-### Persistência de Dados
-- ✅ **localStorage** para salvar dados persistentemente
-
-### Responsividade
-- ✅ Interface adaptada para **mobile e desktop**
-- ✅ Breakpoints em 768px e 480px
-
-## 📱 Instalando como PWA
-
-1. Abra a aplicação no navegador (Chrome, Edge, Safari)
+1. Acesse a aplicação no navegador
 2. Clique no botão **"📥 Instalar Aplicativo"** que aparece na página
 3. Ou use o menu do navegador:
-   - Chrome: Menu > Instalar Diário de Bordo
-   - Edge: Menu > Aplicativos > Instalar este site como um aplicativo
-   - Safari (iOS): Compartilhar > Adicionar à Tela de Início
+   - **Chrome/Edge**: Menu → Instalar Diário de Bordo
+   - **Safari (iOS)**: Compartilhar → Adicionar à Tela de Início
 
-## 🧪 Testando o PWA
+## 🎨 Features
 
-### Usando o Lighthouse (Chrome DevTools)
+- 📝 Criação de entradas com título, descrição e data
+- 📋 Listagem de todas as atividades registradas
+- 🗑️ Remoção de entradas com confirmação
+- 💾 Persistência local de dados (nenhuma perda de informações)
+- 📱 Design responsivo para mobile, tablet e desktop
+- 🔌 Funcionamento 100% offline
+- ⚡ Instalação na tela inicial como app nativo
+- 🎯 Interface limpa e intuitiva
 
-1. Abra as DevTools (F12)
-2. Vá para a aba "Lighthouse"
-3. Selecione "Progressive Web App"
-4. Clique em "Generate report"
-5. Verifique se todos os critérios estão sendo atendidos
-
-### Testando Offline
-
-1. Abra as DevTools (F12)
-2. Vá para a aba "Network"
-3. Marque a opção "Offline"
-4. Recarregue a página - ela deve continuar funcionando!
-
-## � Entrega do Projeto
-
-### Arquivos Incluídos
-✅ `index.html` - Estrutura HTML da aplicação
-✅ `style.css` - Estilos e responsividade
-✅ `script.js` - Lógica completa com localStorage e PWA
-✅ `manifest.json` - Configuração PWA
-✅ `service-worker.js` - Service Worker para modo offline
-✅ `icons/` - Pasta com ícones 192x192 e 512x512
-✅ `README.md` - Esta documentação
-
-### Repositório GitHub
-O projeto está disponível em repositório público no GitHub com todos os arquivos necessários.
-
----
-
-## �💡 Funcionalidades PWA Implementadas
-
-- ✅ Manifest.json configurado
-- ✅ Service Worker registrado
-- ✅ Cache de arquivos estáticos
-- ✅ Funcionalidade offline
-- ✅ Instalável
-- ✅ Ícones configurados
-- ✅ Theme color definida
-- ✅ beforeinstallprompt implementado
-
-## 📝 Características Técnicas
-
-### LocalStorage
-- Dados persistem mesmo após fechar o navegador
-- Limite de ~5-10MB (suficiente para milhares de entradas)
-- Dados salvos apenas localmente (privacidade total)
+## 🛠️ Características Técnicas
 
 ### Service Worker
-- Estratégia Cache First
-- Arquivos estáticos em cache
-- Funciona offline completamente
-- Atualização automática de cache
+- Estratégia **Cache First** para assets estáticos
+- Cache de todos os arquivos necessários
+- Atualização automática em novas versões
+- Interceptação de requisições para modo offline
+
+### LocalStorage
+- Armazenamento persistente de dados
+- Capacidade de ~5-10MB
+- Dados salvos apenas localmente (privacidade garantida)
+- Sincronização em tempo real
 
 ### Responsividade
-- Layout adaptável para mobile e desktop
-- Breakpoints: 768px e 480px
+- Breakpoints em 768px (tablet) e 480px (mobile)
+- Layout fluido e adaptável
 - Touch-friendly para dispositivos móveis
 
-## 🐛 Solução de Problemas
+## 📝 Licença
 
-### PWA não está instalável
-- Verifique se os ícones estão na pasta `icons/`
-- Confirme que está acessando via HTTPS ou localhost
-- Use o Lighthouse para identificar problemas
-
-### Dados não estão sendo salvos
-- Verifique se o navegador permite localStorage
-- Limpe o cache e tente novamente
-- Verifique o console para erros
-
-### Service Worker não está funcionando
-- Confirme que está usando um servidor HTTP (não file://)
-- Verifique o console para erros de registro
-- Limpe o cache e recarregue
-
-## 📄 Informações do Projeto
-
-**Instituição:** EBAC - Escola Britânica de Artes Criativas e Tecnologia
-**Curso:** Desenvolvimento Web
-**Atividade:** Desenvolvimento de PWA - Diário de Bordo
-**Data:** Janeiro de 2026
+Projeto desenvolvido para fins educacionais no curso EBAC.
 
 ---
 
-**Desenvolvido com ❤️ e JavaScript**
+**Desenvolvido com JavaScript Vanilla e PWA APIs**
